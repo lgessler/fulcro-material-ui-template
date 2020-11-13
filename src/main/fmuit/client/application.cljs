@@ -3,6 +3,7 @@
     [com.fulcrologic.fulcro.application :as app]
     [com.fulcrologic.fulcro.networking.http-remote :as net]
     [com.fulcrologic.fulcro.algorithms.tx-processing :as txp]
+    [com.fulcrologic.fulcro.algorithms.tx-processing.synchronous-tx-processing :as stx]
     [taoensso.timbre :as log]
     [com.fulcrologic.fulcro.mutations :as m]))
 
@@ -37,7 +38,7 @@
 
 (defn response-middleware []
   (cond-> (net/wrap-fulcro-response)
-    LOG-RESPONSES resp-logger))
+          LOG-RESPONSES resp-logger))
 
 (defn api-remote []
   (net/fulcro-http-remote
@@ -52,12 +53,12 @@
     (-> body keys first symbol?)))
 
 (defn mutation-error? [result]
-  (let [body         (:body result)
+  (let [body (:body result)
         is-mutation? (mutation? body)]
     (if is-mutation?
-      (let [mutation-sym    (-> body keys first)
+      (let [mutation-sym (-> body keys first)
             response-error? (-> body mutation-sym :server/error?)
-            pathom-error    (-> body mutation-sym :com.wsscode.pathom.core/reader-error)]
+            pathom-error (-> body mutation-sym :com.wsscode.pathom.core/reader-error)]
         (log/info "Result body: " body)
         (boolean (or response-error? pathom-error)))
       false)))
@@ -65,7 +66,7 @@
 (defn read-error? [result]
   (let [body (:body result)]
     (and (map? body)
-      (= (-> body keys first body) :com.wsscode.pathom.core/reader-error))))
+         (= (-> body keys first body) :com.wsscode.pathom.core/reader-error))))
 
 (defn remote-error?
   [result]
@@ -74,26 +75,27 @@
         ;; in pathom use similar helper as augment-session-resp in session to
         ;; override the resp body to just be the map.
         ;;
-        resp   (or (not= status 200) (mutation-error? result)
+        resp (or (not= status 200) (mutation-error? result)
                  (read-error? result))]
     (log/info "Remote error? " resp)
     resp))
 
 (defonce SPA
-  (app/fulcro-app
-    {:remote-error? remote-error?
-     :remotes       {:remote (api-remote)}
-     ;; Modify the default result action so that it looks for :on-result, :on-ok and :on-error
-     :default-result-action!
-     (fn [{:keys [transacted-ast result] ::txp/keys [options] :as env}]
-       (js/console.log (pr-str options))
-       (js/console.log (pr-str (keys env)))
-       (m/default-result-action! env)
-       (when-let [on-result (:on-result options)]
-         (on-result (get-in result [:body (:dispatch-key transacted-ast)])))
-       (if (remote-error? result)
-         (when-let [on-error (:on-error options)]
-           (on-error (get-in result [:body (:dispatch-key transacted-ast)])))
-         (when-let [on-ok (:on-ok options)]
-           (on-ok (get-in result [:body (:dispatch-key transacted-ast)])))))}))
+  (stx/with-synchronous-transactions
+    (app/fulcro-app
+      {:remote-error? remote-error?
+       :remotes       {:remote (api-remote)}
+       ;; Modify the default result action so that it looks for :on-result, :on-ok and :on-error
+       :default-result-action!
+       (fn [{:keys [transacted-ast result] ::txp/keys [options] :as env}]
+         (js/console.log (pr-str options))
+         (js/console.log (pr-str (keys env)))
+         (m/default-result-action! env)
+         (when-let [on-result (:on-result options)]
+           (on-result (get-in result [:body (:dispatch-key transacted-ast)])))
+         (if (remote-error? result)
+           (when-let [on-error (:on-error options)]
+             (on-error (get-in result [:body (:dispatch-key transacted-ast)])))
+           (when-let [on-ok (:on-ok options)]
+             (on-ok (get-in result [:body (:dispatch-key transacted-ast)])))))})))
 
