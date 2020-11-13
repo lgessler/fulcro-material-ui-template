@@ -4,7 +4,9 @@ This is a full-stack starter project based on [dvingo](https://github.com/dvingo
 template which uses [Fulcro](https://fulcro.fulcrologic.com/), 
 [Pathom](https://blog.wsscode.com/pathom/v2/pathom/2.2.0/introduction.html),
 [Material-UI](https://material-ui.com/), and [Crux](https://opencrux.com/main/index.html) and implements some basic
-functionality such as session-based authentication and client-side routing.
+functionality such as session-based authentication and client-side routing. All code included here is code you'll
+probably want to include in your own project, *except* for code that pertains to the `project` entity, which is 
+provided as an example.
 
 **You should not trust this app** when it comes to **security and correctness**. There may be serious security issues
 with the code provided. 
