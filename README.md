@@ -40,7 +40,7 @@ reload it.) You can monitor compilation status at [http://localhost:9630]().
 $ make fe
 ```
 
-2. Start the backend server in a different shell session and enter `(start)` in the REPL. You will now be able to go to
+2. In a separate shell session, start the backend server and enter `(start)` in the REPL. You will now be able to go to
 [http://localhost:8085]() and have your app served.
 
 ```bash
@@ -77,3 +77,8 @@ java -cp deploy/server.jar clojure.main -m fmuit.server.server-entry
 ```
 
 4. Deploy your JAR.
+
+# Issues
+
+If anything's unclear or you need help, please open an issue, or send me a message on the 
+[Clojurians Slack](https://clojurians.slack.com/) (I'm `lgessler`).
