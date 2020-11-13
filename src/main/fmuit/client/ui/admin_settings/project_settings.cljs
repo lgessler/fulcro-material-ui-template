@@ -48,21 +48,4 @@
       (mui/link {:color "inherit" :href (r/route-for :project-management) :key "project"} "Project Management")
       (mui/link {:color "textPrimary" :href (r/route-for :project-settings {:id id}) :key id} name))
 
-    (mui/tab-context {:value active-tab}
-      (mui/tabs {:value    active-tab
-                 :onChange #(m/set-value! this :ui/active-tab %2)}
-        (mui/tab {:label "Tab 1" :value "0"})
-        (mui/tab {:label "Tab 2" :value "1"}))
-
-      (mui/tab-panel {:index "0"}
-        "Hi World"
-        (layers this props))
-      (mui/tab-panel {:index "1"}
-        "Hi World w"
-        ))))
-
-;; TODO: user needs to
-;; - configure name and other general info
-;; - see user read/write perms
-;; - see text-layers
-;; should probably do all this by introducing tabs that are put in correspondence with the url
+    (pr-str props)))
