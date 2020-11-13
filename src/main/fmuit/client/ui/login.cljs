@@ -1,4 +1,4 @@
-(ns glam.client.ui.login
+(ns fmuit.client.ui.login
   (:require [goog.object :as g]
             [goog.events :as events :refer [EventType]]
             [com.fulcrologic.fulcro.components :as comp :refer [defsc]]
@@ -8,11 +8,11 @@
             [com.fulcrologic.fulcro.dom.events :as evt]
             [com.fulcrologic.fulcro.dom.html-entities :as ent]
             [taoensso.timbre :as log]
-            [glam.models.session :as session :refer [session-join get-session]]
-            [glam.models.user :refer [valid-email valid-password]]
-            [glam.client.router :as r]
-            [glam.client.ui.common.forms :as forms]
-            [glam.client.ui.material-ui :as mui]
+            [fmuit.models.session :as session :refer [session-join get-session]]
+            [fmuit.models.user :refer [valid-email valid-password]]
+            [fmuit.client.router :as r]
+            [fmuit.client.ui.common.forms :as forms]
+            [fmuit.client.ui.material-ui :as mui]
             [com.fulcrologic.fulcro.algorithms.form-state :as fs]))
 
 (defn toggle-modal! [this] (sm/trigger! this ::session/session :event/toggle-modal))
