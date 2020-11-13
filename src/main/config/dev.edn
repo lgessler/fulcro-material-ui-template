@@ -1,0 +1,18 @@
+{:taoensso.timbre/logging-config
+ {:level        :debug
+  :ns-blacklist ["shadow.cljs.devtools.server.worker.impl"]}
+
+ :io.pedestal.http/config
+ {:env                    :dev
+  :io.pedestal.http/join? false}
+
+ :fmuit.server.pathom-parser/config
+ {:connect-viz?    true
+  :index-explorer? true
+  :trace?          true
+  :log-responses?  true
+  :handle-errors?  false
+  :sensitive-keys  [:password]}
+
+ :fmuit.server.service/config
+ {:dev? true}}
