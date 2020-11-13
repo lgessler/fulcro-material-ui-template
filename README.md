@@ -9,7 +9,8 @@ probably want to include in your own project, *except* for code that pertains to
 provided as an example.
 
 **You should not trust this app** when it comes to **security and correctness**. There may be serious security issues
-with the code provided. 
+with the code provided. Moreover, I can't claim that any of this is written in best style--route handling in 
+particular is a little messy. You've been warned!
 
 # Usage
 
