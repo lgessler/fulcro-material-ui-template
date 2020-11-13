@@ -57,7 +57,7 @@ and hyphens in the proper places.)
 
 ### Tips
 
-1. See [`src/dev/user`](./src/dev/user) for development REPL setup including a function for database fixtures and 
+1. See [`src/dev/user.clj`](./src/dev/user.clj) for development REPL setup including a function for database fixtures and 
 vars for conveniently accessing those fixtures.
 
 ## Deployment
