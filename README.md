@@ -55,7 +55,7 @@ user=> (start)
 3. If you want to change the project's name from `fmuit` to something else, you'll have to do it manually: search all 
 source files for the string `fmuit` and replace it with your desired name. (Be careful as always to use underscores
 and hyphens in the proper places. If anyone wants to submit a PR to make this a true template using e.g. 
-[dot-clojure](https://github.com/seancorfield/dot-clojure) that'd be awesome.)
+[clj-new](https://github.com/seancorfield/clj-new) that'd be awesome.)
 
 ### Tips
 
