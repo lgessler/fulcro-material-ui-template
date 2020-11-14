@@ -4,7 +4,7 @@ set -eo pipefail
 
 write_prn_file() {
   echo "(ns fmuit.client.prn-debug)(defn pprint-str [v])(defn pprint [v])" \
-    > src/main/com/lgessler/fmuit/client/prn_debug.cljs
+    > src/main/fmuit/client/prn_debug.cljs
 }
 
 main() {
