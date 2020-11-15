@@ -23,6 +23,7 @@ Note: most common tasks are covered in [the Makefile](./Makefile) -- common case
 ```bash
 $ git clone git@github.com:lgessler/fulcro-material-ui-template.git myproject
 $ cd myproject
+$ rm -rf .git
 ```
 
 2. Install NPM deps:
