@@ -12,7 +12,7 @@ provided as an example.
 
 - **You should not trust this app** when it comes to **security and correctness**. There may be serious security issues
 with the code provided. 
-  - One major caveat: passwords are transmitted in plaintext during login and signup. (This is fine if you will use HTTPS
+  - One major example: passwords are transmitted in plaintext during login and signup. (This is fine if you will use HTTPS
     in production, but otherwise a major security problem.)
 - I can't claim that any of this is written in best style--route handling in particular is a little messy.
 - Importing Material-UI the way I've done it here will bring _all_ of it into your bundle, which adds a little over
