@@ -109,7 +109,7 @@
   (let [m (or m {:path (g/get js/location "pathname")})
         {:keys [path]} m
         has-match? (rf/match-by-path router path)]
-    (log/info "router, match: " (pprint-str m))
+    (log/info "router, match: " (pr-str m))
     (if-not has-match?
       ;; unknown page, redirect to root
       (do
