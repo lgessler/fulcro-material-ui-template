@@ -1,3 +1,8 @@
+**Note** (2021-09-09): this repository is somewhat out of date. I intend to overhaul it sometime soon.
+In the meantime, I recommend you take a look at my project [Glam](https://github.com/lgessler/glam), which
+uses the same tech stack, if you want to see how I think these components should fit together and/or you want
+to use it as a basis for your own project.
+
 # Introduction
 
 This is a full-stack starter project based on [dvingo](https://github.com/dvingo/dv.fulcro-template)'s excellent 
